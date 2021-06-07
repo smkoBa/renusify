@@ -1,0 +1,57 @@
+@import "../../style/include";
+
+$item-height: 48px;
+
+@include theme(#{$prefix}list) using($material) {
+  .list-item {
+    &.list-item-active {
+      background-color: rgba(map-metro-get($material, 'background', 'two'), 0.3)
+    }
+
+    &:hover {
+      background-color: rgba(map-metro-get($material, 'background', 'two'), 0.5)
+    }
+  }
+}
+
+.#{$prefix}list {
+  border-radius: 4px;
+  display: block;
+  padding: 8px 0;
+  will-change: box-shadow;
+  flex: 0 1 auto;
+  position: relative;
+  max-width: 100%;
+
+
+  .list-subheader {
+    align-items: center;
+    display: flex;
+    height: 48px;
+    font-size: 0.875rem;
+    font-weight: 400;
+    padding: 0 16px 0 16px;
+  }
+
+  .list-item {
+    align-items: center;
+    display: flex;
+    flex: 1 1 100%;
+    letter-spacing: normal;
+    min-height: $item-height;
+    outline: none;
+    padding: 0 16px;
+    position: relative;
+    text-decoration: none;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &.list-item-active {
+      .#{$prefix}icon {
+        color: inherit;
+      }
+    }
+  }
+}

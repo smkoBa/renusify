@@ -1,0 +1,164 @@
+@import '../../../style/include';
+
+    @include theme(#{$prefix}text-editor) using($material) {
+        .editor-content {
+            border: 1px solid map-metro-get($material, 'text-inputs', 'border');
+
+            &:hover, &:focus {
+                border: 1px solid map-metro-get($material, 'text-inputs', 'border-hover');
+            }
+        }
+    }
+
+    .#{$prefix}text-editor {
+        @include typography($headings, 'body-1');
+        a{
+            color:$link-color
+        }
+        ol, ul {
+            margin: 0 15px;
+        }
+        img{
+          max-width: 100%;
+        }
+        .editor-content {
+            transition: all .3s ease;
+            min-height: 200px;
+            padding: 10px;
+            outline: none;
+        }
+
+        @include light() {
+            $color: map-get($light, 'one');
+            pre {
+                border-left: 5px solid $color;
+            }
+        }
+        @include dark() {
+            $color: map-get($dark, 'one');
+            pre {
+                border-left: 5px solid $color;
+            }
+        }
+
+        pre {
+            direction: ltr;
+            counter-reset: line-numbering;
+            text-align: left;
+            font-size: 17px;
+            line-height: 22px;
+            border: 2px solid grey;
+            border-radius: 2px;
+            background-color: #2f2f2f;
+            background-image: repeating-linear-gradient(to bottom, #444 0px, #444 22px, #2f2f2f 22px, #2f2f2f 44px);
+            padding: 0em 1em;
+            margin: 0.5em 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        pre .line::before {
+            content: counter(line-numbering);
+            counter-increment: line-numbering;
+            padding-right: 1em;
+            /* space after numbers */
+            padding-left: 8px;
+            width: 1.5em;
+            text-align: right;
+            opacity: 0.5;
+            color: white;
+        }
+
+        @include light() {
+            $background: #e2ece2;
+            blockquote {
+                background-color: $background;
+                border: 5px solid map-get($light, 'one');
+
+                &::before {
+                    background-color: $background;
+                }
+
+                &::after {
+                    color: map-get($light, 'one');
+                }
+            }
+        }
+        @include dark() {
+            $background: #3a3e3a;
+            blockquote {
+                background-color: $background;
+                border: 5px solid map-get($dark, 'one');
+
+                &::before {
+                    background-color: $background;
+                }
+
+                &::after {
+                    color: map-get($dark, 'one');
+                }
+            }
+        }
+
+        blockquote {
+            font-family: Georgia, Times, "Times New Roman", serif;
+            font-size: 1.25em;
+            font-style: italic;
+            line-height: 1.8em;
+            margin: 1.1em;
+            padding: 1em 2em;
+            position: relative;
+            transition: .2s border ease-in-out;
+            z-index: 0;
+
+            &::before {
+                content: "";
+                position: absolute;
+                top: 50%;
+                height: 2em;
+                width: 7px;
+                margin-top: -1em
+            }
+
+            &::after {
+                content: "\F27E";
+                display: inline-block;
+                font: normal normal normal 24px/1 "Material Design Icons";
+                font-size: 40px;
+                text-rendering: auto;
+                -webkit-font-smoothing: antialiased;
+                position: absolute;
+                top: 50%;
+                font-style: normal;
+                line-height: 1em;
+                text-align: center;
+                text-indent: -2px;
+                width: 1em;
+                margin-top: -0.5em;
+                transition: .2s all ease-in-out, .4s transform ease-in-out;
+            }
+
+            @include ltr() {
+                border-right-width: 0;
+                border-bottom-width: 0;
+                border-top-width: 0;
+                &::before {
+                    left: -5px;
+                }
+                &::after {
+                    left: -0.5em;
+                }
+            }
+            @include rtl() {
+                border-bottom-width: 0;
+                border-left-width: 0;
+                border-top-width: 0;
+                &::before {
+                    right: -5px;
+                }
+                &::after {
+                    right: -0.5em;
+                }
+            }
+        }
+    }

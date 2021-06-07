@@ -1,0 +1,90 @@
+@import "color";
+
+$material-light: (
+        'app-bar': map-get($grey, 'lighten-4'),
+        'background': (
+                'one':map-get($grey, 'lighten-5'),
+                'two':map-get($grey, 'lighten-2')
+        ),
+        'dividers': rgba(map-get($shades, 'black'), 0.2),
+        'text': (
+                'primary': rgba(map-get($shades, 'black'), 0.8),
+                'secondary': rgba(map-get($shades, 'black'), 0.54),
+                'disabled': rgba(map-get($shades, 'black'), 0.38),
+        ),
+        'icons': (
+                'active': rgba(map-get($shades, 'black'), 0.54),
+                'inactive': rgba(map-get($shades, 'black'), 0.38)
+        ),
+        'buttons': (
+                'disabled': rgba(map-get($shades, 'black'), 0.26),
+                'focused': rgba(map-get($shades, 'black'), 0.12),
+                'focused-alt': rgba(map-get($shades, 'white'), 0.6),
+                'pressed': rgba(#999, 0.4)
+        ),
+        'states': (
+                'hover': 0.04,
+                'focus': 0.12,
+                'selected': 0.08,
+                'activated': 0.12,
+                'pressed': 0.16,
+                'dragged': 0.08
+        ),
+        'text-inputs': (
+                'border': rgba(map-get($shades, 'black'), 0.24),
+                'border-hover': rgba(map-get($shades, 'black'), 0.86)
+        ),
+        'cards': map-get($shades, 'white'),
+        'chips': #e0e0e0,
+        'switch': #eeeeee,
+        'table': (
+                'active': map-get($grey, 'lighten-4'),
+                'hover': map-get($grey, 'lighten-3'),
+                'group': map-get($grey, 'lighten-3')
+        ),
+) !default;
+
+$material-dark: (
+        'app-bar': map-get($grey, 'darken-4'),
+        'background': (
+                'one':#303030,
+                'two':#505050
+        ),
+        'dividers': rgba(map-get($shades, 'white'), 0.2),
+        'text': (
+                'theme': map-get($shades, 'white'),
+                'primary': map-get($shades, 'white'),
+                'secondary': rgba(map-get($shades, 'white'), 0.7),
+                'disabled': rgba(map-get($shades, 'white'), 0.5),
+        ),
+        'icons': (
+                'active': map-get($shades, 'white'),
+                'inactive': rgba(map-get($shades, 'white'), 0.5)
+        ),
+        'buttons': (
+                'disabled': rgba(map-get($shades, 'white'), 0.3),
+                'focused': rgba(map-get($shades, 'white'), 0.12),
+                'focused-alt': rgba(map-get($shades, 'white'), 0.1),
+                'pressed': rgba(#ccc, 0.25)
+        ),
+        'states': (
+                'hover': 0.08,
+                'focus': 0.24,
+                'selected': 0.16,
+                'activated': 0.24,
+                'pressed': 0.32,
+                'dragged': 0.16
+        ),
+        'text-inputs': (
+                'border': rgba(map-get($shades, 'white'), 0.3),
+                'border-hover': rgba(map-get($shades, 'white'), 0.86)
+        ),
+        'cards': map-get($grey, 'darken-3'),
+        'chips': #555,
+        'switch': #555,
+        'table': (
+                'active': #505050,
+                'hover': map-get($grey, 'darken-2'),
+                'group': map-get($grey, 'darken-2')
+        ),
+) !default;

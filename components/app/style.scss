@@ -1,0 +1,75 @@
+@import '../../style/style.scss';
+
+.#{$prefix}app {
+  display: flex;
+
+  &.app-light {
+    background: map-metro-get($material-light, 'background', 'one');
+    color: map-metro-get($material-light, 'text', 'primary');
+    .background-one{
+      background: map-metro-get($material-light, 'background', 'one');
+    }
+    .background-two{
+      background: map-metro-get($material-light, 'background', 'two');
+    }
+  }
+
+  &.app-dark {
+    background: map-metro-get($material-dark, 'background', 'one');
+    color: map-metro-get($material-dark, 'text', 'primary');
+    .background-one{
+      background: map-metro-get($material-dark, 'background', 'one');
+    }
+    .background-two{
+      background: map-metro-get($material-dark, 'background', 'two');
+    }
+  }
+
+
+  &.app-rtl {
+    direction: rtl;
+    text-align: right;
+  }
+
+  &.app-ltr {
+    direction: ltr;
+    text-align: left;
+  }
+
+  .app-wrap {
+    flex: 1 1 auto;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    max-width: 100%;
+    position: relative
+  }
+
+  &.top-offset {
+    .app-wrap {
+      padding-top: $toolbar-height;
+    }
+  }
+
+  &.bottom-offset {
+    .app-wrap {
+      padding-bottom: $bottom-nav-height;
+    }
+  }
+
+}
+
+// Firefox overrides
+@include firefox() {
+  @media print {
+    .#{$prefix}app {
+      display: block;
+
+      &-wrap {
+        display: block
+      }
+    }
+  }
+}
+

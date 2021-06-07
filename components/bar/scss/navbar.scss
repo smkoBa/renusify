@@ -1,0 +1,37 @@
+@import "../../../style/include";
+
+
+.#{$prefix}nav {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+
+
+  &.nav-active {
+    z-index: map_get($z-index, 'important');
+    display: block;
+  }
+
+  .r-card {
+    cursor: pointer;
+    display: flex;
+
+    &:hover {
+      opacity: 0.7;
+    }
+
+    .title {
+      display: inline-block;
+    }
+
+    &:last-child {
+      border-radius: 0 0 $border-modal $border-modal;
+    }
+  }
+
+  .#{$prefix}breadcrumbs {
+    border-radius: $border-modal $border-modal 0 0;
+  }
+}

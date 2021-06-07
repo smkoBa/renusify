@@ -1,0 +1,178 @@
+@import "../../../style/include";
+
+$width: 60px;
+$height: 31px;
+$toggle-width: 20px;
+$toggle-offset: 7px;
+$toggle-offset-top: 5px;
+
+@include theme(#{$prefix}switch) using ($material) {
+  .switch-btn{
+    background-color: map-get($material, 'switch');
+  }
+  .switch-btn--checked {
+    &.switch-btn {
+      color: inherit;
+    }
+
+    background-color: map-get($material, 'cards');
+    animation: changeColor .6s ease forwards;
+    @keyframes changeColor {
+      90% {
+        background-color: map-get($material, 'cards');
+      }
+      90.001% {
+        background-color: currentColor;
+      }
+      100% {
+        background-color: currentColor;
+      }
+    }
+  }
+  .switch-label, .switch-btn {
+    color: map-metro-get($material, 'text', 'primary');
+  }
+}
+
+
+.#{$prefix}switch {
+  display: flex;
+  flex-direction: row;
+
+  .switch-btn {
+    width: $width;
+    height: $height;
+    cursor: pointer;
+    border-radius: $width / 2;
+    overflow: hidden;
+    position: relative;
+
+    .ripple.ripple--dark {
+      z-index: 1;
+      transform: scale(4.8);
+      transition: .6s ease;
+      background-color: inherit;
+    }
+
+    .ripple.ripple--light {
+      z-index: 2;
+      transform: scale(1);
+      transition: z-index 0s .6s ease, transform 0s ease;
+    }
+
+    .#{$prefix}icon {
+      position: absolute;
+      z-index: 4;
+      top: 5px;
+      @include ltr(){
+        left: 5px;
+      }
+      @include rtl(){
+        right: 5px;
+      }
+    }
+
+    &.switch-btn--checked {
+
+      .#{$prefix}icon {
+       @include ltr(){
+        left: 32px;
+      }
+      @include rtl(){
+        right: 32px;
+      }
+      }
+
+      .toggle.toggle--dark {
+        background-color: #fff;
+      }
+
+      .ripple.ripple--dark {
+        z-index: 2;
+        transform: scale(1);
+        transition: z-index 0s .6s ease, transform 0s ease;
+      }
+
+      .ripple.ripple--light {
+        z-index: 1;
+        transform: scale(4.8);
+        transition: .6s ease;
+      }
+    }
+
+    &.switch-btn-flat {
+      border: solid 1px;
+      height: 32px;
+    }
+  }
+
+  .toggle {
+    width: $toggle-width;
+    height: $toggle-width;
+
+    position: absolute;
+    top: $toggle-offset-top;
+
+    border-radius: 50%;
+
+    z-index: 3;
+
+
+    &.toggle--dark {
+      @include ltr(){
+      left: $toggle-offset;
+      }
+      @include rtl(){
+        right: $toggle-offset;
+      }
+      background-color: inherit;
+    }
+
+    &.toggle--light {
+      background-color: currentColor;
+      @include ltr(){
+      right: $toggle-offset;
+      }
+      @include rtl(){
+        left: $toggle-offset;
+      }
+    }
+  }
+
+  .ripple {
+    width: $toggle-width;
+    height: $toggle-width;
+
+    position: absolute;
+    top: $toggle-offset-top;
+
+    border-radius: 50%;
+
+    &.ripple--dark {
+
+      @include ltr(){
+      left: $toggle-offset;
+      }
+      @include rtl(){
+        right: $toggle-offset;
+      }
+    }
+
+    &.ripple--light {
+      background-color: currentColor;
+      @include ltr(){
+      right: $toggle-offset;
+      }
+      @include rtl(){
+        left: $toggle-offset;
+      }
+    }
+  }
+}
+
+
+
+
+
+
+

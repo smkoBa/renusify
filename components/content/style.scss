@@ -1,0 +1,30 @@
+@import '../../style/_include';
+
+.#{$prefix}content {
+  display: flex;
+  flex: 1 0 auto;
+  max-width: 100%;
+  transition: 0.2s map-get($transition, 'fast-out-slow-in');
+
+  .content-wrap {
+    flex: 1 1 auto;
+    max-width: 100%;
+    position: relative;
+  }
+
+  @include firefox() {
+    @media print {
+      display: block
+    }
+  }
+
+  @include media-breakpoint-up('lg') {
+    &.flipped {
+      padding-left: $navbar-width;
+    }
+  }
+
+}
+
+
+

@@ -1,0 +1,17 @@
+@import "../../style/include";
+
+.#{$prefix}toast {
+  max-width: 500px;
+  width: 95vw;
+  position: fixed;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: map-get($z-index, 'important');
+
+  .toast-content {
+    padding: 15px;
+  }
+}
+
+

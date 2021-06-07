@@ -1,0 +1,65 @@
+@import "../../../style/include";
+
+$bottom-nav-btn-font-size: map-metro-get($headings, 'caption', 'size') !default;
+@include theme(#{$prefix}bottom-navigation) using ($material) {
+  background-color: map-get($material, 'cards');
+  color: map-metro-get($material, 'text', 'primary');
+
+  .#{$prefix}btn:not(.router-link-exact-active) {
+    color: map-metro-get($material, 'text', 'secondary') !important
+  }
+}
+
+.#{$prefix}bottom-navigation {
+  bottom: 0;
+  display: flex;
+  left: 0;
+  justify-content: center;
+  width: 100%;
+  height: $bottom-nav-height;
+
+  .#{$prefix}btn {
+    border-radius: 0;
+    box-shadow: none;
+    flex: 0 1 auto;
+    font-size: $bottom-nav-btn-font-size;;
+    height: inherit !important;
+    max-width: $bottom-nav-btn-max-width;
+    min-width: $bottom-nav-btn-min-width;
+    position: relative;
+    text-transform: none;
+
+    &:after {
+      content: none
+    }
+
+    .btn-content {
+      flex-direction: column-reverse;
+      height: inherit;
+    }
+
+    .#{$prefix}icon {
+      margin-bottom: 4px
+    }
+
+    > *:not(.#{$prefix}icon) {
+      line-height: 1.2
+    }
+
+    &.router-link-exact-active {
+      color: inherit
+    }
+  }
+
+  &.bottom-navigation-fixed {
+    position: fixed;
+    z-index: map_get($z-index, 'default')
+  }
+
+  &.bottom-navigation-grow {
+    .#{$prefix}btn {
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+}

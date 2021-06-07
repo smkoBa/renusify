@@ -1,0 +1,82 @@
+@import "utilities";
+@import 'container';
+@mixin theme($component) {
+  .app-light .#{$component} {
+    @content($material-light)
+  }
+  .app-dark .#{$component} {
+    @content($material-dark);
+  }
+}
+
+@mixin light() {
+  .app-light & {
+    @content
+  }
+}
+
+@mixin dark() {
+  .app-dark & {
+    @content
+  }
+}
+
+@mixin rtl() {
+  .app-rtl & {
+    @content
+  }
+}
+
+@mixin ltr() {
+  .app-ltr & {
+    @content
+  }
+}
+
+@mixin background-color($color_value) {
+  background-color: $color_value !important;
+  border-color: $color_value !important;
+}
+
+@mixin text-color($color_value) {
+  color: $color_value !important;
+  caret-color: $color_value !important;
+}
+
+@mixin typography($headings,$key) {
+  font-size: map-metro-get($headings, $key, 'size') !important;
+  font-weight: map-metro-get($headings, $key, 'weight');
+  line-height: map-metro-get($headings, $key, 'line-height');
+  letter-spacing: map-metro-get($headings, $key, 'letter-spacing') !important;
+}
+
+@mixin elevation($name, $important: false) {
+  box-shadow: map-get($box-shadows, $name) if($important, !important, null)
+}
+
+@mixin states($material) {
+  &:hover::before {
+    opacity: map-metro-get($material, 'states', 'hover')
+  }
+  &:focus::before {
+    opacity: map-metro-get($material, 'states', 'focus')
+  }
+  &-active {
+    @include active-states($material)
+  }
+}
+
+@mixin active-states($material) {
+  &:hover::before, &::before {
+    opacity: map-metro-get($material, 'states', 'activated')
+  }
+  &:focus::before {
+    opacity: map-metro-get($material, 'states', 'pressed')
+  }
+}
+
+@mixin firefox() {
+  @-moz-document url-prefix() {
+    @content
+  }
+}

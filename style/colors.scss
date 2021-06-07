@@ -1,0 +1,98 @@
+@import "./_include";
+
+:root {
+  --color-one-light: #{map_get($light, 'one')};
+  --color-two-light: #{map_get($light, 'two')};
+  --color-three-light: #{map_get($light, 'three')};
+  --color-error-light: #{map_get($light, 'error')};
+  --color-info-light: #{map_get($light, 'info')};
+  --color-warning-light: #{map_get($light, 'warning')};
+  --color-success-light: #{map_get($light, 'success')};
+
+  --color-one-dark: #{map_get($dark, 'one')};
+  --color-two-dark: #{map_get($dark, 'two')};
+  --color-three-dark: #{map_get($dark, 'three')};
+  --color-error-dark: #{map_get($dark, 'error')};
+  --color-info-dark: #{map_get($dark, 'info')};
+  --color-warning-dark: #{map_get($dark, 'warning')};
+  --color-success-dark: #{map_get($dark, 'success')};
+}
+
+@each $color_name, $color_value in $gradient {
+  .#{$prefix}app .color-gradient-#{$color_name} {
+    background: linear-gradient(map_get($color_value, '0'), map_get($color_value, '1'));
+    color: white;
+  }
+  .#{$prefix}app .color-gradient-#{$color_name}-45 {
+    background: linear-gradient(45deg, map_get($color_value, '0'), map_get($color_value, '1'));
+    color: white;
+  }
+  .#{$prefix}app .color-gradient-#{$color_name}-90 {
+    background: linear-gradient(90deg, map_get($color_value, '0'), map_get($color_value, '1'));
+    color: white;
+  }
+}
+
+@each $color_name, $color_value in $shades {
+  .#{$prefix}app .color-#{$color_name} {
+    @include background-color($color_value);
+  }
+
+  .#{$prefix}app .color-#{$color_name}-text {
+    @include text-color($color_value);
+  }
+}
+
+@each $color_name, $color_value in $light {
+  .app-light .color-#{$color_name} {
+    @include background-color(var(--color-#{$color_name}-light));
+  }
+  .app-light .color-#{$color_name}-text {
+    @include text-color(var(--color-#{$color_name}-light));
+  }
+}
+
+@each $color_name, $color_value in $dark {
+  .app-dark .color-#{$color_name} {
+    @include background-color(var(--color-#{$color_name}-dark));
+  }
+  .app-dark .color-#{$color_name}-text {
+    @include text-color(var(--color-#{$color_name}-dark));
+  }
+}
+
+@each $color_name, $color_value in $light {
+  .#{$prefix}app .color-#{$color_name} {
+    @include text-color(map_get($shades, 'white'));
+  }
+}
+
+.app-light {
+  .color-primary-text {
+    @include text-color(map-metro-get($material_light, 'text', 'primary'));
+  }
+
+  .color-secondary-text {
+    @include text-color(map-metro-get($material_light, 'text', 'secondary'));
+  }
+
+  .color-disabled-text {
+    @include text-color(map-metro-get($material_light, 'text', 'disabled'));
+  }
+}
+
+.app-dark {
+  .color-primary-text {
+    @include text-color(map-metro-get($material_dark, 'text', 'primary'));
+  }
+
+  .color-secondary-text {
+    @include text-color(map-metro-get($material_dark, 'text', 'secondary'));
+  }
+
+  .color-disabled-text {
+    @include text-color(map-metro-get($material_dark, 'text', 'disabled'));
+  }
+}
+
+

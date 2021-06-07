@@ -1,0 +1,12 @@
+@import "../../../style/include";
+
+@include theme(#{$prefix}rating) using ($material) {
+  color: map-metro-get($material, 'text', 'disabled')
+}
+
+.#{$prefix}rating {
+  max-width: 100%;
+  white-space: nowrap;
+  transition: 1s $primary-transition;
+
+}

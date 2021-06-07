@@ -1,0 +1,89 @@
+@import "../../style/include";
+
+@include theme(#{$prefix}card) using($material) {
+  &.card-outlined {
+    border: 1px solid map-get($material, 'dividers')
+  }
+  @include states($material)
+}
+
+.#{$prefix}card {
+  display: block;
+  position: relative;
+  color: inherit;
+  max-width: 100%;
+  outline: none;
+  text-decoration: none;
+  transition-property: box-shadow, opacity;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+
+  &.card-hover {
+    cursor: pointer;
+    transition: box-shadow .4s cubic-bezier(.25, .8, .25, 1);
+
+    &:hover {
+      @include elevation('lg', true)
+    }
+  }
+
+  > *:first-child:not(.#{$prefix}btn):not(.#{$prefix}chip) {
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit
+  }
+
+  > *:last-child:not(.#{$prefix}btn):not(.#{$prefix}chip) {
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit
+  }
+
+  &.card-link {
+    cursor: pointer;
+
+    &:focus:before {
+      opacity: 0.08
+    }
+
+    &:before {
+      background: currentColor;
+      bottom: 0;
+      content: '';
+      left: 0;
+      opacity: 0;
+      pointer-events: none;
+      position: absolute;
+      right: 0;
+      top: 0;
+      transition: .2s opacity map-get($transition, 'fast-in-slow-out');
+    }
+  }
+
+  &.card-outlined, &.card-flat {
+    background-color: transparent;
+    box-shadow: none
+  }
+}
+
+//sheet
+@include theme(#{$prefix}sheet) using($material) {
+  background-color: map-get($material, 'cards');
+  border-color: map-get($material, 'cards');
+  color: map-metro-get($material, 'text', 'primary');
+}
+
+.#{$prefix}sheet {
+  display: block;
+  transition: box-shadow .3s cubic-bezier(0.4, 0, 0.2, 1);
+  @include elevation('lg');
+  border-radius: map_get($borders, 'md');
+
+  &-tile {
+    border-radius: 0;
+    @include elevation('none');
+  }
+}
+
+
+
+

@@ -1,0 +1,35 @@
+@import "../../style/include";
+
+$icon-size: 24px !default;
+$icon-size-dense: 20px !default;
+
+@include theme(#{$prefix}icon) using ($material) {
+  &.icon-disabled {
+    color: map-metro-get($material, 'icons', 'inactive') !important
+  }
+}
+
+.#{$prefix}icon {
+  align-items: center;
+  display: inline-flex;
+  font-feature-settings: 'liga';
+  font-size: $icon-size;
+  justify-content: center;
+  letter-spacing: normal;
+  line-height: 1;
+  text-indent: 0;
+  transition: $primary-transition;
+  vertical-align: middle;
+  user-select: none;
+
+  &.icon-disabled {
+    pointer-events: none;
+    opacity: .6
+  }
+
+  @include rtl() {
+    &:not(.exact-icon) {
+      transform: scale(-1, 1);
+    }
+  }
+}

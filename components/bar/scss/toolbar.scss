@@ -1,0 +1,60 @@
+@import "../../../style/include";
+
+.#{$prefix}toolbar {
+  contain: layout;
+  flex: 1 1 auto;
+  .r-input {
+    padding-top: 0;
+    margin-top: 0
+  }
+
+  .toolbar-content {
+    height: $toolbar-height;
+    padding: $toolbar-content-padding-y $toolbar-content-padding-x;
+    align-items: center;
+    display: flex;
+    position: relative;
+    z-index: map_get($z-index, 'medium');
+  }
+
+  .toolbar-items {
+    display: flex;
+    height: inherit;
+    align-items: center;
+
+    > .#{$prefix}btn:not(.btn-icon) {
+      border-radius: 0;
+      height: 100% !important;
+      max-height: none;
+    }
+
+    &-fill {
+      width: 100%;
+    }
+
+    .#{$prefix}input-container {
+      margin: 0;
+    }
+  }
+
+  .toolbar-title {
+    font-size: 1.25rem;
+    line-height: 1.5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &.toolbar-fixed {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: map_get($z-index, 'medium');
+  }
+
+  &.toolbar-sticky {
+    position: sticky;
+    top: 0;
+    z-index: map_get($z-index, 'medium');
+  }
+}

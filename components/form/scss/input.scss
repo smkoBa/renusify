@@ -1,0 +1,182 @@
+@import '../../../style/include';
+
+@include theme(#{$prefix}input-container) using ($material) {
+  &:not(.input-disabled) {
+    input,
+    textarea, .label, .#{$prefix}icon, .#{$prefix}btn {
+      color: map-metro-get($material, 'text', 'primary')
+    }
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: map-metro-get($material, 'text', 'disabled')
+  }
+
+  &.input-disabled {
+    input,
+    textarea {
+      color: map-metro-get($material, 'text', 'disabled')
+    }
+  }
+
+  .input-control {
+    border: solid 1px map-metro-get($material, 'text-inputs', 'border');
+
+  }
+
+}
+
+.#{$prefix}input-container {
+  position: relative;
+  align-items: flex-start;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  font-size: 1rem;
+  letter-spacing: normal;
+  margin-top: 18px;
+
+  &.input-disabled {
+    pointer-events: none;
+  }
+
+  input {
+    max-height: 32px
+  }
+
+  input,
+  textarea {
+    flex: 1 1 auto;
+    line-height: 20px;
+    padding: 8px 0 8px;
+    max-width: 100%;
+    min-width: 0px;
+    width: 100%;
+    outline: none;
+    position: relative;
+
+    &[type=text ]::-ms-clear {
+      display: none
+    }
+
+    &:invalid {
+      box-shadow: none
+    }
+
+    &:focus,
+    &:active {
+      outline: none
+    }
+  }
+
+  .input-control {
+    display: flex;
+    flex-direction: column;
+    height: 40px;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    width: 100%;
+    border-radius: 20px;
+    padding: 0 16px;
+    .append-icon {
+      position: absolute;
+      cursor: pointer;
+      @include ltr() {
+        right: 5px;
+      }
+      @include rtl() {
+        left: 5px;
+      }
+
+    }
+  }
+
+  &.hide-detail {
+    margin-top: 0;
+    .input-control {
+      border: unset !important;
+      height: auto;
+    }
+  }
+
+  .label {
+    white-space: nowrap;
+    position: absolute;
+    z-index: 0;
+    top: 10px;
+    transition: $primary-transition;
+
+    @include ltr() {
+      left: 15px;
+      transform-origin: top left;
+    }
+
+    @include rtl() {
+      right: 15px;
+      transform-origin: top right;
+    }
+  }
+
+
+  .label-active {
+
+    @include ltr() {
+      transform: translateY(-27px) translateX(5px) scale(.9);
+    }
+    @include rtl() {
+      transform: translateY(-27px) translateX(-5px) scale(.9);
+    }
+    transition: $primary-transition
+  }
+
+  &.input-focused {
+    .input-control {
+      border: solid 1px currentColor;
+    }
+
+    .#{$prefix}icon, .#{$prefix}btn {
+      color: currentColor !important;
+    }
+
+    .label {
+      color: currentColor !important;
+      @include ltr() {
+        transform: translateY(-27px) translateX(5px) scale(.9);
+      }
+      @include rtl() {
+        transform: translateY(-27px) translateX(-5px) scale(.9);
+      }
+      transition: $primary-transition
+    }
+  }
+
+  .massage {
+    display: none;
+    margin-left: 10px;
+
+    &-active {
+      display: block;
+    }
+  }
+
+
+  &.color-error-text {
+    .label {
+      color: currentColor;
+    }
+
+    .input-control {
+      border: solid 1px currentColor;
+    }
+  }
+
+  &.text-area {
+    .input-control {
+      height: auto;
+      border-radius: 15px;
+    }
+
+  }
+}
+

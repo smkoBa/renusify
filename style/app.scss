@@ -1,0 +1,232 @@
+@import "./_include";
+
+html {
+  font-size: $font-size-root;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  box-sizing: border-box;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  overscroll-behavior: none;
+}
+
+
+/* scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track:hover {
+  border: 1px solid rgba(100, 100, 100, 0.4);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(100, 100, 100, 0.4);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 100, 100, 0.6);
+}
+
+
+.app-dark {
+  ::-webkit-scrollbar-track:hover {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.4);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.8);
+  }
+}
+
+.#{$prefix}app {
+  font-family: $body-font-family;
+  line-height: $line-height-root;
+
+
+  ::-ms-clear,
+  ::-ms-reveal {
+    display: none
+  }
+
+  .ltr {
+    text-align: left;
+    direction: ltr;
+  }
+
+  .rtl {
+    text-align: right;
+    direction: rtl;
+  }
+
+  .router-link-exact-active {
+    color: $link-color;
+  }
+
+  a {
+    color: currentColor;
+    text-decoration: none;
+  }
+}
+
+//display
+.#{$prefix}app {
+  @each $size, $media_query in $display-breakpoints {
+    .hidden {
+      &-#{$size} {
+        @media #{$media_query}{
+          display: none !important
+        }
+      }
+    }
+  }
+}
+
+//text
+.#{$prefix}app {
+  @each $name, $weight in $font-weights {
+    .font-weight {
+      &-#{$name} {
+        font-weight: $weight !important
+      }
+    }
+  }
+
+  .font-italic {
+    font-style: italic !important
+  }
+}
+
+//typography
+.#{$prefix}app {
+  .display-1 {
+    @include typography($headings, 'h1')
+  }
+
+  .display-2 {
+    @include typography($headings, 'h2')
+  }
+
+  .display-3 {
+    @include typography($headings, 'h3')
+  }
+
+  .display-4 {
+    @include typography($headings, 'h4')
+  }
+
+  .headline {
+    @include typography($headings, 'h5')
+  }
+
+  .title {
+    @include typography($headings, 'h6')
+  }
+
+  .subtitle-1 {
+    @include typography($headings, 'subtitle-1')
+  }
+
+  .subtitle-2 {
+    @include typography($headings, 'subtitle-2')
+  }
+
+  .body-2 {
+    @include typography($headings, 'body-2')
+  }
+
+  .body-1 {
+    @include typography($headings, 'body-1')
+  }
+
+  .caption {
+    @include typography($headings, 'caption')
+  }
+
+  .overline {
+    @include typography($headings, 'overline');
+    text-transform: uppercase
+  }
+
+  p {
+    margin-bottom: $spacer * 4
+  }
+
+}
+
+//width
+.#{$prefix}app {
+  @each $name, $value in $widths {
+    .w-#{$name} {
+      width: $value !important
+    }
+  }
+  @each $name, $value in $heights {
+    .h-#{$name} {
+      height: $value !important
+    }
+  }
+}
+
+//transition
+.#{$prefix}app {
+  @each $name, $bezier in $transition {
+    .transition-#{$name} {
+      transition: 0.3s $bezier !important
+    }
+  }
+}
+
+//z-index
+.#{$prefix}app {
+  @each $name, $value in $z-index {
+    .z-#{$name} {
+      z-index: $value !important;
+    }
+  }
+}
+
+// Utilities
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-min-name($breakpoint, $grid-breakpoints);
+    @each $key, $utility in $utilities {
+      @if type-of($utility) == "map" and (map-get($utility, responsive) or $infix == "") {
+        @include build-utility($utility, $infix)
+      }
+    }
+  }
+
+
+}
+
+// Print utilities
+@media print {
+  @each $key, $utility in $utilities {
+    @if type-of($utility) == "map" and map-get($utility, print) == true {
+      @include build-utility($utility, "-print")
+    }
+
+  }
+}
+
+.#{$prefix}app {
+  @each $name, $value in $box-shadows {
+    .elevation-#{$name} {
+      @include elevation($name, $important: true);
+    }
+  }
+}
